@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="showMvcAPP">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>show MVC</title>
+</head>
+<body ng-controller="TextController">
+    <p>{{myMsg.someText}}</p>
+    <p ng-bind="myMsg.someText"></p>
+
+    <form ng-controller="StarUpController">
+        Starting : <input ng-change="computeNeeded()" ng-model="funding.startingEstimate">
+        Recommendation : {{funding.needed}}
+    </form>
+
+    <script src="js/angular.js"></script>
+<script>
+    var showMvcAPP = angular.module('showMvcAPP',[]);
+    showMvcAPP.controller('TextController', function ($scope) {
+        var myMsg = {};
+        myMsg.someText = 'single coder --> matter....WTF';
+        $scope.myMsg = myMsg;
+    });
+
+
+    showMvcAPP.controller('StarUpController', function ($scope) {
+        $scope.funding = {startingEstimate:0};
+        $scope.computeNeeded = function () {
+            $scope.funding.needed = $scope.funding.startingEstimate * 10;
+        }
+    });
+</script>
+</body>
+</html>
