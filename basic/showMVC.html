@@ -8,12 +8,14 @@
     <p>{{myMsg.someText}}</p>
     <p ng-bind="myMsg.someText"></p>
 
-    <form ng-controller="StarUpController">
+    <form ng-submit="requestFunding()" ng-controller="StarUpController">
         Starting : <input ng-change="computeNeeded()" ng-model="funding.startingEstimate">
         Recommendation : {{funding.needed}}
+        <button>Fund my startup</button>
+        <button ng-click="reset()">Reset</button>
     </form>
 
-    <script src="js/angular.js"></script>
+    <script src="../js/angular.js"></script>
 <script>
     var showMvcAPP = angular.module('showMvcAPP',[]);
     showMvcAPP.controller('TextController', function ($scope) {
@@ -24,9 +26,17 @@
 
 
     showMvcAPP.controller('StarUpController', function ($scope) {
-        $scope.funding = {startingEstimate:0};
+
         $scope.computeNeeded = function () {
             $scope.funding.needed = $scope.funding.startingEstimate * 10;
+        };
+
+        $scope.requestFunding = function () {
+            window.alert('get more customer please...');
+        };
+
+        $scope.reset = function () {
+            $scope.funding.startingEstimate = 0;
         }
     });
 </script>
